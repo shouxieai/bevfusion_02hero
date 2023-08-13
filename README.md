@@ -10,3 +10,5 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=Here+is+our+experience+learning+bevfusion)](https://git.io/typing-svg)
 
 ![bevfusion_02hero's github activity graph](https://raw.githubusercontent.com/shouxieai/bevfusion_02hero/output/github-contribution-grid-snake.svg)
+
+![image](https://https://github.com/shouxieai/bevfusion_02hero/asset/gif/test.gif)   
