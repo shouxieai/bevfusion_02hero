@@ -11,5 +11,5 @@
 
 ![bevfusion_02hero's github activity graph](https://raw.githubusercontent.com/shouxieai/bevfusion_02hero/output/github-contribution-grid-snake.svg)
 
-<img src="https://github.com/YourAcountName/ProjectName/blob/master/GIFName.gif" width="300" height="300">
+<img src="https://github.com/shouxieai/bevfusion_02hero/blob/main/asset/gif/test.gif" width="300" height="300">
 
