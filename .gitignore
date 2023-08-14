@@ -1,0 +1,11 @@
+data
+*.jpg
+*.pth
+*.pt
+*.onnx
+
+# git add {files}
+# git status
+# git commit -m "aaaa"
+# git pull
+# git push
