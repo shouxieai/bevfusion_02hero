@@ -9,7 +9,11 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=Here+is+our+experience+learning+bevfusion)](https://git.io/typing-svg)
 
-![bevfusion_02hero's github activity graph](https://raw.githubusercontent.com/shouxieai/bevfusion_02hero/blob/output/github-contribution-grid-snake.svg)
+![bevfusion_02hero's github activity graph](https://raw.githubusercontent.com/shouxieai/bevfusion_02hero/output/github-contribution-grid-snake.svg)
+
+
+<!-- [![BEPb's github activity graph](https://github-readme-activity-graph.cyclic.app/graph?username=shouxieai&theme=github-compact)](https://github.com/shouxieai/github-readme-activity-graph) -->
+![BEPb's github activity graph](https://raw.githubusercontent.com/shouxieai/bevfusion_02hero/output/github-contribution-grid-snake.svg)
 
 <div aligh="center">
 <img src="https://github.com/shouxieai/bevfusion_02hero/blob/main/asset/gif/test.gif" width="300" height="300" loop=infinite>
