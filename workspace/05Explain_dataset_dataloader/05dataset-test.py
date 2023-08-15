@@ -67,10 +67,8 @@ configs/
 
 '''
 
-base_root = "/datav/Lidar_AI_Solution/CUDA-BEVFusion/bevfusion/"
-
 # 1. 设置convfuser.yaml 路径
-args_config = '/datav/Lidar_AI_Solution/CUDA-BEVFusion/bevfusion/configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml'
+args_config = '../../data/configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml'
 
 # 2. 迭代加载配置文件
 configs.load(args_config, recursive=True)
