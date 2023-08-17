@@ -3,6 +3,8 @@
 *.pth
 *.pt
 *.onnx
+workspace/06Explain_create_frustum/*.pkl
+
 
 # git add {files}
 # git status
