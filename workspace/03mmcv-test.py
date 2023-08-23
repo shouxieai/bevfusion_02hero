@@ -1,7 +1,7 @@
 import mmcv
 import json
 
-data = mmcv.load("../../data/nuscenes_infos_val.pkl")
+data = mmcv.load("data/nuscenes/nuscenes_infos_val.pkl")
 
 for i in data:
     print(i)
