@@ -1,0 +1,6 @@
+setup.py
+my_package_name.egg-info/PKG-INFO
+my_package_name.egg-info/SOURCES.txt
+my_package_name.egg-info/dependency_links.txt
+my_package_name.egg-info/top_level.txt
+test01/test085.cpp
