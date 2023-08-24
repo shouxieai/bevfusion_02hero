@@ -1,21 +1,80 @@
+import glob
+import os.path as osp
 from setuptools import setup
-from torch.utils import cpp_extension 
+from torch.utils.cpp_extension import CUDAExtension, BuildExtension
+# 第一步修改，CppExtension替换成了CUDAExtension
+
+# ROOT_DIR = osp.dirname(osp.abspath(__file__))
+# include_dirs = [osp.join(ROOT_DIR, "include")]
+# sources = glob.glob("test02/*.cpp") + glob.glob("test02/*.cu")# ['test02/interpolation.cpp', 'test02/interpolation_kernel.cu']
+
 
 setup(
-    name='my_package_name', # package的名称。就是python中import中使用的名称
+    name='setup_name', 
     version="1.0",
     author="yxy",
     author_email="111.qq.com",
     description="cppcuda test",
     long_description="cppcuda test",
     ext_modules=[
-        cpp_extension.CppExtension(
-            'my_package_name',  # 
-            ['test01/test085.cpp']) # 如果有多个，使用逗号隔开
+        CUDAExtension(  # 第一步
+            name='ext_modules_name',  
+            sources=[       # 第二步，sources=sources。sources部分，使用glob包，筛选cu\cpp文件。手写较麻烦。
+                "test02/interpolation.cpp",
+                "test02/interpolation_kernel.cu"
+            ],
+            # include_dirs=include_dirs,  # 第三步，如果cuda函数的声明没有卸载cpp里，而是单独有.h的头文件。可以加这个
+            extra_compile_args={  # 第四步，编译的额外的参数，可加可不加。 O2 优化用
+                'cxx':['-O2'],
+                'nvcc':['-O2']}
+            ),
+        CUDAExtension(  # 第一步
+            name='ext_modules_name',  
+            sources=[       # 第二步，sources=sources。sources部分，使用glob包，筛选cu\cpp文件。手写较麻烦。
+                "test03/interpolation_plus.cpp",
+                "test03/interpolation_kernel_plus.cu"
+            ],
+            # include_dirs=include_dirs,  # 第三步，如果cuda函数的声明没有卸载cpp里，而是单独有.h的头文件。可以加这个
+            extra_compile_args={  # 第四步，编译的额外的参数，可加可不加。 O2 优化用
+                'cxx':['-O2'],
+                'nvcc':['-O2']}
+            ),
+        CUDAExtension(  
+            name='ext_modules_name2',  
+            sources=[  
+                "test04/interpolation_plus2.cpp",
+                "test04/interpolation_kernel_plus2.cu"
+            ],
+            # include_dirs=include_dirs,  
+            extra_compile_args={  
+                'cxx':['-O2'],
+                'nvcc':['-O2']}
+            ),
         ],
     cmdclass={
-        'build_ext': cpp_extension.BuildExtension} 
+        'build_ext': BuildExtension} 
 )
+
+
+# ==============下方是纯cpp的
+# from setuptools import setup
+# from torch.utils import cpp_extension 
+
+# setup(
+#     name='setup_name', # package的名称。就是python中import中使用的名称
+#     version="1.0",
+#     author="yxy",
+#     author_email="111.qq.com",
+#     description="cppcuda test",
+#     long_description="cppcuda test",
+#     ext_modules=[
+#         cpp_extension.CppExtension(
+#             'ext_modules_name',  # 
+#             ['test01/test085.cpp']) # 如果有多个，使用逗号隔开
+#         ],
+#     cmdclass={
+#         'build_ext': cpp_extension.BuildExtension} 
+# )
 
 
 
