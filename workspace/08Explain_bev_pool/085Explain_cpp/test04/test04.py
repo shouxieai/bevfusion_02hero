@@ -46,7 +46,9 @@ class Trilinear_interpolation_cuda(torch.autograd.Function):
     
     @staticmethod
     def backward(ctx, grad_feat_interp): # 5.输入默认有loss对feat_interp的导数，作为已知参数
-        feats, points = ctx.saved_tesnsors # 6.取出值
+        feats, points = ctx.saved_tensors # 6.取出值
+        
+        grad_feat_interp = grad_feat_interp.contiguous() # 9 加.contiguous()非常重要。不然报错
         grad_feats = ext_modules_name2.trilinear_interpolation_bw(grad_feat_interp, feats, points)
         return grad_feats, None # 7 数量forward的输入对应
     
@@ -55,20 +57,21 @@ class Trilinear_interpolation_cuda(torch.autograd.Function):
 if __name__ == "__main__":
     N = 65536
     F = 256
-    feats = torch.rand(N, 8, F, device='cuda')
+    rand = torch.rand(N, 8, F, device='cuda')
+    feats = rand.clone().requires_grad_()
+    # feats = rand.clone().requires_grad_().to(torch.float64) # 调用核函数时分发机制的好处。可以使用float32或float64
+    feats2 = rand.clone().requires_grad_()
+    # feats2 = rand.clone().requires_grad_().to(torch.float64)
     points = torch.rand(N, 3, device='cuda') * 2 - 1 
-
-    feats2 = feats.clone()
-    points2 = points.clone()
+    # points = points.to(torch.float64)
 
     t = time.time()
-    out_cuda = Trilinear_interpolation_cuda(feats, points) # 8.注意调用方法的方式
+    out_cuda = Trilinear_interpolation_cuda.apply(feats, points) # 8.注意调用方法的方式。使用我们包装好的可自动微分的函数
     torch.cuda.synchronize()
     print(f"cuda fw time : {time.time() - t}")
 
-
     t = time.time()
-    out_py = trilinear_interpolation_py(feats2, points2)
+    out_py = trilinear_interpolation_py(feats2, points)
     torch.cuda.synchronize()
     print(f"python fw time : {time.time() - t}")
 
@@ -82,6 +85,7 @@ if __name__ == "__main__":
     # 下方假设python写的是对的。所以以python为基准，验证Trilinear_interpolation_cuda写的对不对
     t = time.time()
     loss = out_py.sum()
+    print(loss)
     loss.backward()
     torch.cuda.synchronize()
     print(f"python bw time : {time.time() - t}")

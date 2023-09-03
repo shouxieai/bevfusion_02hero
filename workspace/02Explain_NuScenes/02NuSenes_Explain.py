@@ -4,10 +4,11 @@ from nuscenes.utils.data_classes import Box # 10.1 创建Box
 import numpy as np
 import cv2
 import os
+import inspect
 
 # 1. 实例化NuScenes
 version = "v1.0-mini"  # 因为我们是用的是mini数据集
-dataroot = "/home/shenlan09/YXY/BEVFusion/BEVfusion/bevfusion/configs/nuscenes" # 我的数据集放这里了
+dataroot = "/app/121BEVFusion/Lidar_AI_Solution/CUDA-BEVFusion/bevfusion/data/nuscenes" # 我的数据集放这里了
 nuscenes = NuScenes(version=version, dataroot=dataroot, verbose=False)
 # print(len(nuscenes.sample)) # 404
 
@@ -19,7 +20,7 @@ lidar_sample_data = nuscenes.get('sample_data', lidar_sample_token)
 
 lidar_filename = os.path.join(dataroot, lidar_sample_data["filename"]) # samples/LIDAR_TOP/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin
 lidar_point_cloud_data = np.fromfile(lidar_filename, dtype=np.float32).reshape(-1, 5)
-print(lidar_point_cloud_data.shape) # (34688, 5)
+print(f"行号[{inspect.currentframe().f_lineno}]:\n",lidar_point_cloud_data.shape) # (34688, 5)
 
 '''
 3. 坐标系
@@ -70,7 +71,7 @@ yxy:理解为，ego相当于中间坐标系
             能进行转换，意味着存在变换矩阵，将 雷达点云  转换到ego坐标系上。
             下方代码演示如何得到变换矩阵
             
-'''    
+''' 
 def get_matrix(calibrated_data, inverse=False):
     """
     args:
@@ -92,7 +93,7 @@ lidar_calibrated_data = nuscenes.get("calibrated_sensor", lidar_sample_data["cal
 # lidar_to_ego_matrix 是基于ego而言的。
 # point = lidar_to_ego_matrix @ lidar_points.T   代表了lidar -> ego 的过程。
 lidar_to_ego_matrix = get_matrix(lidar_calibrated_data)
-print(lidar_to_ego_matrix) 
+print(f"行号[{inspect.currentframe().f_lineno}]:\n",lidar_to_ego_matrix) 
 '''
 [[ 0.00203327  0.99970406  0.02424172  0.943713  ]
  [-0.99998053  0.00217566 -0.00584864  0.        ]
@@ -112,7 +113,7 @@ ego_pose_data0 = nuscenes.get("ego_pose", lidar_sample_data["ego_pose_token"])
 'translation': [411.3039349319818, 1180.8903791765097, 0.0]}
 '''
 ego_to_global_matrix = get_matrix(ego_pose_data0)
-print(ego_to_global_matrix)
+print(f"行号[{inspect.currentframe().f_lineno}]:\n",ego_to_global_matrix)
 '''
 [[-3.45552926e-01  9.38257989e-01  1.62825160e-02  4.11303935e+02]
  [-9.38338111e-01 -3.45280305e-01 -1.74097708e-02  1.18089038e+03]
@@ -131,6 +132,8 @@ lidar_to_global_matrix = ego_to_global_matrix @ lidar_to_ego_matrix
 lidar_point = np.concatenate((lidar_point_cloud_data[:, :3], np.ones((len(lidar_point_cloud_data), 1))), axis=1)
 # 8.1 
 # global_points = lidar_to_global_matrix @ lidar_point_data.T
+print(f"行号[{inspect.currentframe().f_lineno}]:\n", lidar_to_global_matrix.shape) #  (4, 4)
+print(f"行号[{inspect.currentframe().f_lineno}]:\n", lidar_point.shape) #  (34688, 4)
 global_points = lidar_point @ lidar_to_global_matrix.T 
 # 等同于上面。相当于求(lidar_to_global_matrix @ lidar_point_data.T).T
 
@@ -206,7 +209,7 @@ for cam in cameras:
         [ 3.73055642e+02  1.13082907e+03 -2.10000000e-02]]
         '''
         global_corners = np.concatenate((corners, np.ones((len(corners), 1))), axis=1)
-        image_base_corners = global_corners @ global_to_image.T
+        image_base_corners = global_corners @ global_to_image.T # 本来应该是image_base_corners.T = global_to_image @ global_corners.T
         
         image_base_corners[:, :2] /= image_base_corners[:, [2]]
         image_base_corners = image_base_corners.astype(np.int32)

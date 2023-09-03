@@ -146,7 +146,7 @@ torch::Tensor trilinear_bw_cu(
         //即前向时，输出 插值的结果，而反向时，输出的是Loss对feat的导数。
         //同理，输出的东西不一样，形状也不一样。{N,  F} 改为{N， 8， F}
 
-    const dim3 threads(16, 16);
+    const dim3 threads(16, 16); //线程16*16=256
 
     const dim3 blocks((N + threads.x - 1) / threads.x, (F + threads.y - 1) / threads.y); 
     AT_DISPATCH_FLOATING_TYPES(feats.type(), "trilinear_bw_cu", ([&] { //2.4 函数名修改为bw
