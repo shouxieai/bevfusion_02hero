@@ -12,7 +12,7 @@ from torch.utils.cpp_extension import CUDAExtension, BuildExtension
 setup(
     name='setup_name', 
     version="1.0",
-    author="yxy",
+    author="121",
     author_email="111.qq.com",
     description="cppcuda test",
     long_description="cppcuda test",
@@ -63,7 +63,7 @@ setup(
 # setup(
 #     name='setup_name', # package的名称。就是python中import中使用的名称
 #     version="1.0",
-#     author="yxy",
+#     author="121",
 #     author_email="111.qq.com",
 #     description="cppcuda test",
 #     long_description="cppcuda test",
@@ -86,7 +86,7 @@ setup(
 # setup(
 #     name='lltm_cpp',
 #     version="1.0",
-#     author="yxy",
+#     author="121",
 #     author_email="111.qq.com",
 #     description="cppcuda test",
 #     long_description="cppcuda test",
