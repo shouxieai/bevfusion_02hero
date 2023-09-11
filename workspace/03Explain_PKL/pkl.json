@@ -1,0 +1,35 @@
+{
+    "infos": [
+        {
+            "lidar_path": "./data/nuscenes/samples/LIDAR_TOP/n008-2018-08-01-15-16-36-0400__LIDAR_TOP__1533151603547590.pcd.bin",
+            "token": "3e8750f331d7499e9b5123e9eb70f2e2",
+            "sweeps": [],
+            "cams": {
+                "CAM_FRONT": {
+                    "data_path": "./data/nuscenes/samples/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151603512404.jpg",
+                    "type": "CAM_FRONT",
+                    "sample_data_token": "4f5e35aa6c6a426ca945e206fb2f4921",
+                    "sensor2ego_translation": [
+                        1.72200568478,
+                        0.00475453292289,
+                        1.49491291905
+                    ],
+                    "sensor2ego_rotation": [
+                        0.5077241387638071,
+                        -0.4973392230703816,
+                        0.49837167536166627,
+                        -0.4964832014373754
+                    ],
+                    "ego2global_translation": [
+                        599.849775495386,
+                        1647.6411294309523,
+                        0.0
+                    ],
+                    "ego2global_rotation": [
+                        -0.9687876119182126,
+                        -0.004506968075376869,
+                        -0.00792272203393983,
+                        0.24772460658591755
+                    ],
+                    "timestamp": 1533151603512404,
+                    "sensor2lidar_rotation": 

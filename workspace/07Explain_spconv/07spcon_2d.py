@@ -28,18 +28,23 @@ class Net(nn.Module):
         # print(x_sp) # SparseConvTensor[shape=torch.Size([3, 1])]
         x = self.net(x_sp)
         return x
-    
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(device)
 model = Net()
 model.net[0].weight.data.fill_(1) # make kernel value all fill 1
-model.to(device)
+model.to(device) # 较重要
 
 data = torch.tensor([[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 0, 0], [0, 0, 0, 3]], dtype=torch.float32).to(device) # type is important
-data = data.reshape(1, 4, 4, 1) # batch_size, w,h,c
+data = data.reshape(1, 4, 4, 1) # batch_size, w,h,c 因为是2d，所以暂时理解为whc(可能不严谨)。 3D的话是batch_size, x,y,z
+print(data)
+print(data.shape)
+print(data.device)
 
 res = model(data)
 res = res.to("cpu")
 print(res)
+print(res.shape)
 
 """
 tensor([[[[3., 0., 0., 0.],

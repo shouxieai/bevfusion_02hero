@@ -65,7 +65,7 @@
                           'ego2global_rotation': [-0.968669701688471, -0.004043399262151301, -0.007666594265959211, 0.24820129589817977], 
                           'timestamp': 1533151603547590, 
                           'location': 'boston-seaport', 
-                          'gt_boxes': array([[-7.96473834e+00,  3.69020716e+01,  2.13935128e-01,
+                          'gt_boxes': array([[-7.96473834e+00,  3.69020716e+01,  2.13935128e-01, # N*7的数组  xyzwlh 看02NuScenes
          6.21000000e-01,  6.47000000e-01,  1.77800000e+00,
          2.11862084e-01],
        [ 7.38978348e+00,  1.74614743e+01, -1.79888832e-01,
@@ -133,11 +133,13 @@
         -4.63128696e+00],
        [-8.64909156e+00,  3.72540622e+01,  4.55851019e-01,
          6.99000000e-01,  7.38000000e-01,  1.95000000e+00,
-         2.46768669e-01]]), 'gt_names': array(['pedestrian', 'pedestrian', 'pedestrian', 'pedestrian',
+         2.46768669e-01]]), 
+         'gt_names'类别: array(['pedestrian', 'pedestrian', 'pedestrian', 'pedestrian',
        'pedestrian', 'car', 'pedestrian', 'pedestrian', 'pedestrian',
        'car', 'pedestrian', 'pedestrian', 'pedestrian', 'pedestrian',
        'car', 'pedestrian', 'pedestrian', 'pedestrian', 'pedestrian',
-       'car', 'pedestrian', 'pedestrian', 'pedestrian'], dtype='<U10'), 'gt_velocity': array([[-1.72683006e-01, -1.03657537e+00],
+       'car', 'pedestrian', 'pedestrian', 'pedestrian'], dtype='<U10'), 
+       'gt_velocity': array([[-1.72683006e-01, -1.03657537e+00],  # 包围框的速度。N*2的数组。
        [-3.33198231e-01, -1.44077024e+00],
        [-4.25737447e-03, -1.36752939e+00],
        [-1.10058621e+00,  1.60301210e-02],
@@ -159,8 +161,11 @@
        [ 5.06951237e-02, -1.12351093e+01],
        [ 2.51893156e-01,  1.32342388e+00],
        [ 2.15346398e-02, -1.85611530e-03],
-       [-2.93874662e-01, -1.09385825e+00]]), 'num_lidar_pts': array([ 1,  7,  9,  4,  5,  4, 68,  9,  5, 34,  2,  1,  3,  4,  1,  1,  6,
-        9,  3, 40,  1,  3,  3]), 'num_radar_pts': array([0, 1, 0, 0, 0, 4, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1, 1, 0, 0, 7, 1, 0,
-       0]), 'valid_flag': array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+       [-2.93874662e-01, -1.09385825e+00]]), 
+       'num_lidar_pts': array([ 1,  7,  9,  4,  5,  4, 68,  9,  5, 34,  2,  1,  3,  4,  1,  1,  6,
+        9,  3, 40,  1,  3,  3]), 每个3D包围框中包含的激光雷达点数
+        'num_radar_pts': array([0, 1, 0, 0, 0, 4, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1, 1, 0, 0, 7, 1, 0,
+       0]), 每个3D包围框中包含的雷达点数
+       'valid_flag': array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
         True,  True,  True,  True,  True,  True,  True,  True,  True,
-        True,  True,  True,  True,  True])}
+        True,  True,  True,  True,  True])}# 每个包围框是否有效，一般情况下，一个边框至少包含一个激光雷达点或雷达点。满足这个要求就是True
