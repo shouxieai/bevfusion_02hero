@@ -6,6 +6,7 @@
 *.png
 *.pkl
 *.sh
+*.gif
 workspace/DROP
 workspace/06Explain_create_frustum/*.pkl
 /workspace/10Explain_output_visualize/*.pkl
@@ -16,3 +17,4 @@ workspace/06Explain_create_frustum/*.pkl
 # git commit -m "aaaa"
 # git pull
 # git push
+

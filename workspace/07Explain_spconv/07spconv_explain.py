@@ -41,7 +41,7 @@ from spconv.pytorch.utils import PointToVoxel, gather_features_by_pc_voxel_id
 # # Initialize PointToVoxel
 # gen = PointToVoxel(
 #     vsize_xyz=[1, 1, 1],
-#     coors_range_xyz=[0, 0, 0, 4, 4, 4], # 格子范围 # 4*4*1
+#     coors_range_xyz=[0, 0, 0, 4, 4, 1], # 格子范围 # 4*4*1
 #     num_point_features=4, #需要与点对应 X,Y,Z,value
 #     max_num_voxels=20,
 #     max_num_points_per_voxel=1

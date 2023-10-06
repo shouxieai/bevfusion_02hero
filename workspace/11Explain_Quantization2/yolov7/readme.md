@@ -1,0 +1,1 @@
+- 将yolov7的项目放在这里。cd 进yolov7文件夹。使用 python ../1_ptq.py 进行使用
