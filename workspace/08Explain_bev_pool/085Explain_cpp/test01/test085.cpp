@@ -1,5 +1,7 @@
 #include <torch/extension.h>
+#include <iostream>
 
+using namespace std;
 torch::Tensor cpp_test_func1(    
     torch::Tensor input
 ){

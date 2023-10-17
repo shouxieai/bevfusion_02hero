@@ -11,7 +11,7 @@ torch::Tensor trilinear_fw_cu(
 );
 
 // C++ interface
-torch::Tensor trilinear_interpolation(
+torch::Tensor trilinear_interpolation_a(
     torch::Tensor feats,
     torch::Tensor points
 ){
@@ -23,5 +23,5 @@ torch::Tensor trilinear_interpolation(
 
 //绑定
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m){
-    m.def("trilinear_interpolation", &trilinear_interpolation);
-}
+    m.def("trilinear_interpolation_a", &trilinear_interpolation_a);
+}s

@@ -31,16 +31,66 @@ if __name__ == "__main__":
     ranks = ranks.to("cuda:4")
     print(ranks.shape)
     
-    t = time.time()
-    res = QuickCumsum.apply(x, geom_feats, ranks)
-    torch.cuda.synchronize()
-    print(f"QuickCumsum花费时间:{time.time() - t}s")
+    #======梯度检查=======================
+    x.requires_grad = True
+
+    # 不设置requires_grad=True，因为geom_feats和ranks不需要梯度。
+    x = x.to(torch.double)
+    geom_feats = geom_feats.to(torch.int64) # keep it as int64 as it's the original dtype
+    ranks = ranks.to(torch.int64) # keep it as int64
+
+    from torch.autograd import gradcheck
+
+    # 使用.apply来调用
+    res = gradcheck(QuickCumsum.apply, (x[:30], geom_feats[:30], ranks[:30]), eps=1e-3)
+    print(res)
+
     
-    t = time.time()
-    res = QuickCumsumCuda.apply(x, geom_feats, ranks, 1, 1, 360, 360)
-    torch.cuda.synchronize()
-    print(f"QuickCumsumCuda花费时间:{time.time() - t}s")
+    # =====极简版测试===
+    # t = time.time()
+    # res = QuickCumsum.apply(x, geom_feats, ranks)
+    # torch.cuda.synchronize()
+    # print(f"QuickCumsum花费时间:{time.time() - t}s")
+    
+    # t = time.time()
+    # res = QuickCumsumCuda.apply(x, geom_feats, ranks, 1, 1, 360, 360)
+    # torch.cuda.synchronize()
+    # print(f"QuickCumsumCuda花费时间:{time.time() - t}s")
     
     
+    # ======修改版测试=========
+    # num_iterations = 10
+    # warmup_iterations = 10
+    # from tqdm import tqdm
     
+    # # 预热 QuickCumsum
+    # for _ in tqdm(range(warmup_iterations), desc="预热 QuickCumsum"):
+    #     _ = QuickCumsum.apply(x, geom_feats, ranks)
+    #     torch.cuda.synchronize()
+
+    # # 测试 QuickCumsum
+    # start_time = time.time()
+    # for _ in tqdm(range(num_iterations), desc="测试 QuickCumsum"):
+    #     _ = QuickCumsum.apply(x, geom_feats, ranks)
+    #     torch.cuda.synchronize()
+    # end_time = time.time()
+    # avg_time_quickcumsum = (end_time - start_time) / num_iterations
+    # print(f"QuickCumsum 平均花费时间: {avg_time_quickcumsum:.6f}s")
+
+    # # 预热 QuickCumsumCuda
+    # for _ in tqdm(range(warmup_iterations), desc="预热 QuickCumsumCuda"):
+    #     _ = QuickCumsumCuda.apply(x, geom_feats, ranks, 1, 1, 360, 360)
+    #     torch.cuda.synchronize()
+
+    # # 测试 QuickCumsumCuda
+    # start_time = time.time()
+    # for _ in tqdm(range(num_iterations), desc="测试 QuickCumsumCuda"):
+    #     _ = QuickCumsumCuda.apply(x, geom_feats, ranks, 1, 1, 360, 360)
+    #     torch.cuda.synchronize()
+    # end_time = time.time()
+    # avg_time_quickcumsumcuda = (end_time - start_time) / num_iterations
+    # print(f"QuickCumsumCuda 平均花费时间: {avg_time_quickcumsumcuda:.6f}s")
+
+    # torch.cuda.empty_cache()  # 清空 CUDA 缓存
+
     

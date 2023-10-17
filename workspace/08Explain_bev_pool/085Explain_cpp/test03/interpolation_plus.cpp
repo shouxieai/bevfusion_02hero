@@ -16,8 +16,6 @@ torch::Tensor trilinear_fw_cu(
     feats (N,8,F)  输入的是N个框，每个框8个角点， 每个点有F个特征
     points(N,3)     点的坐标，
     feat_interp(N,F) 中心点，是8个角点的三线性内插值。
-
-
 */
 torch::Tensor trilinear_interpolation(
     torch::Tensor feats,

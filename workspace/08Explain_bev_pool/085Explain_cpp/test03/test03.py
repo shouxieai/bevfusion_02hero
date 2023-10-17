@@ -48,7 +48,7 @@ def trilinear_interpolation_py(feats, points):
 
 N = 65536
 F = 256
-feats = torch.rand(N, 8, F, device='cuda')
+feats = torch.rand(N, 8, F, device='cuda') # N个立方体，每个立方体8个点，每个点是256维特征来描述
 points = torch.rand(N, 3, device='cuda') * 2 - 1 # 使得ppints的取值在 -1 到1 之间
 
 feats2 = feats.clone()

@@ -482,7 +482,7 @@ if __name__ == "__main__":
     # 9模型导出
     # pth_model.to(device)
     # save_file = "ptq_yolov72.onnx"
-    # export_ptd(model, save_file, device)
+    export_ptd(model, save_file, device)
     
     # 3. 验证评估
     for i in range(10):

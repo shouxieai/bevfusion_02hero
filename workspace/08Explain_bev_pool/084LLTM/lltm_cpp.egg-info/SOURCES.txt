@@ -1,6 +1,0 @@
-lltm.cpp
-setup.py
-lltm_cpp.egg-info/PKG-INFO
-lltm_cpp.egg-info/SOURCES.txt
-lltm_cpp.egg-info/dependency_links.txt
-lltm_cpp.egg-info/top_level.txt

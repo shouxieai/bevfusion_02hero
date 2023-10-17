@@ -80,8 +80,9 @@ torch::Tensor trilinear_fw_cu(
     
     /*
     4.AT_DISPATCH_FLOATING_TYPES首先告诉内部的数据进行的是浮点数运算
-        包含float32   float64 double
-    4.1 如果想用半精度计算，使用AT_DISPATCH_FLOATING_TYPES_HALF
+        包含float32   float64 
+    4.1 如果想用半精度计算，使用AT_DISPATCH_FLOATING_TYPES_HALF(除了float32 float64，还支持float16)
+            - AT_DISPATCH_ALL_TYPES 支持所有类型
     4.2 整数运算T_DISPATCH_INTEGRAL_TYPES
 
     The purpose of AT_DISPATCH_FLOATING_TYPES is to take care of this dispatch for us. 

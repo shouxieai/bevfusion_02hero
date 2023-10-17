@@ -1,8 +1,0 @@
-# ninja log v5
-0	47200	1692869449068246506	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test02/interpolation.o	f8a5d6ae973b3db7
-1	66476	1692869468327418950	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test02/interpolation_kernel.o	43b58e227fe01dd9
-2	27534	1692869528656950695	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test03/interpolation_plus.o	4eda3bb6e3c67fa0
-3	70453	1692869571563300997	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test03/interpolation_kernel_plus.o	9c22c8330d998972
-2	37426	1692869610853860537	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test04/interpolation_plus2.o	eab07087ba9c2da3
-6	32734	1692869829722851711	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test04/interpolation_plus2.o	dc2c2e23b596e654
-5	75604	1692870010490044759	/datav/shouxieai/bevfusion_02hero/workspace/08Explain_bev_pool/085Explain_cpp/build/temp.linux-x86_64-3.8/test04/interpolation_kernel_plus2.o	51abe9d5b6735d9f
