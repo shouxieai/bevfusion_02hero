@@ -39,7 +39,7 @@ def before_hook(module, x, output):
     print(f"[hook]\t output shape is \t\t{output.shape}")
     print(f"[hook]\t 当前的module是\t\t{module}")
     print(f"[hook]\t 当前的module.__class__.__name__是\t\t{module.__class__.__name__}")
-    return torch.ones(1, 1, 24, 24)
+    return torch.ones(1, 1, 1, 1)
 
 # 6.注册到self.conv2中
 hook_handle = model.conv2.register_forward_hook(before_hook)
@@ -61,6 +61,6 @@ hook_handle.remove()
 [hook]   output shape is                torch.Size([1, 20, 24, 24])
 [hook]   当前的module是         Conv2d(20, 20, kernel_size=(5, 5), stride=(1, 1))
 [hook]   当前的module.__class__.__name__是              Conv2d
-[2]      origin forward conv2 output.shape=torch.Size([1, 1, 24, 24])
-[4]      forward origin res1 =torch.Size([1, 1, 24, 24])
+[2]      origin forward conv2 output.shape=torch.Size([1, 1, 1, 1])
+[4]      forward origin res1 =torch.Size([1, 1, 1, 1])
 """

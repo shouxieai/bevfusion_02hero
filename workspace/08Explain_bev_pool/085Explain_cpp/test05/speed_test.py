@@ -31,20 +31,28 @@ if __name__ == "__main__":
     ranks = ranks.to("cuda:4")
     print(ranks.shape)
     
+    
+    #==========测试两者输出是否相同===不相同=========
+    # res_lss = QuickCumsum.apply(x, geom_feats, ranks)
+    # res_bev = QuickCumsumCuda.apply(x, geom_feats, ranks, 1, 1, 360, 360)
+    # print(res_lss[0].shape)
+    # print(res_bev.shape)
+    
+    
     #======梯度检查=======================
-    x.requires_grad = True
+    # x.requires_grad = True
 
-    # 不设置requires_grad=True，因为geom_feats和ranks不需要梯度。
-    x = x.to(torch.double)
-    geom_feats = geom_feats.to(torch.int64) # keep it as int64 as it's the original dtype
-    ranks = ranks.to(torch.int64) # keep it as int64
+    # # 不设置requires_grad=True，因为geom_feats和ranks不需要梯度。
+    # x = x.to(torch.double)
+    # geom_feats = geom_feats.to(torch.int64) # keep it as int64 as it's the original dtype
+    # ranks = ranks.to(torch.int64) # keep it as int64
 
-    from torch.autograd import gradcheck
+    # from torch.autograd import gradcheck
 
-    # 使用.apply来调用
-    res = gradcheck(QuickCumsum.apply, (x[:30], geom_feats[:30], ranks[:30]), eps=1e-3)
-    print(res)
-
+    # # 使用.apply来调用
+    # res = gradcheck(QuickCumsum.apply, (x[:30], geom_feats[:30], ranks[:30]), eps=1e-3)
+    # print(res)
+    
     
     # =====极简版测试===
     # t = time.time()
