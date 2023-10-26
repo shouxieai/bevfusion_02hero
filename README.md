@@ -7,7 +7,7 @@
     <img src="https://visitor-badge.laobi.icu/badge?page_id=shouxieai.bevfusion_02hero" alt="visitors"/>   
 </p>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=Here+is+our+experience+learning+bevfusion)](https://git.io/typing-svg)
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&random=false&width=600&height=100&lines=The+best+place+to+learn+and+explore+bevfusion." alt="Typing SVG" /></a>
 
 
 <div aligh="center">
