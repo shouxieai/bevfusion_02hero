@@ -12,6 +12,5 @@
 
 <div aligh="center">
 <img src="https://github.com/shouxieai/bevfusion_02hero/blob/main/asset/gif/test.gif" width="300" height="300" loop=infinite>
-hello!!!
 </div>
 
